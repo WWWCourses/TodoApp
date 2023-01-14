@@ -1,0 +1,7 @@
+.btnDelete{
+	cursor: pointer;
+	border: 1px solid #F00;
+}
+.btnDelete:active{
+	box-shadow: 2px 2px #000;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<style>
+		ul{
+			border: 2px solid red;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li data-id="1" data-user="iva">Item 1 <button>Del 1</button></li>
+		<li data-id="2" data-user="iva">Item 2 <button>Del 2</button></li>
+		<li data-id="3" data-user="iva">Item 3 <button>Del 3</button></li>
+		<li data-id="4" data-user="iva">Item 4 <button>Del 4</button></li>
+		<li data-id="5" data-user="iva">Item 5 <button>Del 5</button></li>
+	</ul>
+
+	<script>
+		let ul = document.querySelector('ul');
+		ul.addEventListener('click', function(e) {
+			console.log(e.target);
+			// exit if event.target is not button
+			if(e.target.nodeName=='BUTTON'){
+				let li = e.target.parentElement;
+				console.dir(li.dataset);
+				let id = li.dataset.id;
+			}
+
+
+		})
+	</script>
+</body>
+</html>
