@@ -54,7 +54,7 @@ const nodes = {
 // State
 let todos = [];
 // fetch todos
-const url="https://jsonplaceholder.typicode.com/todos";
+const url="http://localhost:3004/todos";
 
 fetch(url)
 .then(r=>r.json())
