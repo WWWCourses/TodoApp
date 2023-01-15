@@ -1,4 +1,5 @@
 function renderTodos(todos){
+	console.log(todos);
 	nodes.ul.innerHTML = "";
 	todos.forEach(todo => {
 		const li = `<li data-id="${todo.id}">${todo.id}. ${todo.title}  <span class="btnDelete">X</span></li>`;
@@ -18,30 +19,21 @@ function addTodo(todos) {
 	}
 
 	todos = [...todos, newTodo];
-	console.dir(todos);
-
-	// render state
-	renderTodos(todos)
+	return todos;
 }
 
 function deleteTodo(todos, id) {
-	// change state
-	//TODO: find bug:
-	let idx = todos.findIndex(todo=>{
-		console.dir(todo);
-		todo.id===id
-	});
 
-	console.log(`id: ${id};idx:${idx}`);
+	let idx = todos.findIndex(todo=>{
+		console.log(`todo.id: ${todo.id}`);
+		return todo.id===id
+	});
 
 	if(idx!== -1){
 		todos.splice(idx,1);
 	}
 
-	console.dir(todos);
-	// render state
-	renderTodos(todos)
-
+	return todos
 }
 
 const nodes = {
@@ -54,7 +46,7 @@ const nodes = {
 // State
 let todos = [];
 // fetch todos
-const url="http://localhost:3004/todos";
+const url="http://localhost:3000/todos";
 
 fetch(url)
 .then(r=>r.json())
@@ -67,13 +59,16 @@ fetch(url)
 nodes.btnAdd.addEventListener('click', function(e){
 	// prevent default action on submit button click
 	e.preventDefault();
+
+	todos = addTodo(todos);
+	renderTodos(todos);
 })
 
 nodes.ul.addEventListener('click', function (e) {
 	// if btnDelete is clicked:
 	if(e.target.className=='btnDelete'){
-		let id = e.target.parentElement.dataset.id;
-		deleteTodo(todos, id)
+		let id = e.target.parentElement.dataset.id*1;
+		todos = deleteTodo(todos, id)
 
 		// render state
 		renderTodos(todos)
