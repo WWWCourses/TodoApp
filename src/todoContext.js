@@ -1,11 +1,9 @@
-import React, {useState,useEffect} from "react";
-import './App.css';
+import {createContext} from "react";
 
-import { TodoList } from "./components/todoList";
-import { AddTodo } from "./components/addTodo";
+const Context = createContext(defaultValue);
 
-function App() {
-	const [todos, setTodos] = useState([]);
+
+function ContextDemo() {
 
 	function fetchTodos() {
 		// console.log(`fetchTodos callled`);
@@ -29,12 +27,11 @@ function App() {
 
 	useEffect(fetchTodos,[]) // componentDidMount
 
-  return (
-    <div className="App">
-			<AddTodo addTodo={addTodo}/>
-			<TodoList todos={todos}/>
-    </div>
-  );
-}
 
-export default App;
+	return (<div>
+	  <Context.Provider value={}>
+		<Component1/>
+	  </Context.Provider>
+
+	</div>);
+  }
