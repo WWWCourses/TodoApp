@@ -1,7 +1,11 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useContext} from "react";
+import { TodosContext } from "../todoContext";
 
-function AddTodo({addTodo}) {
+function AddTodo() {
 	const [todoTitle, setTodoTitle] = useState("");
+
+	const {_, addTodo} = useContext(TodosContext);
+
 	return <form action="">
 		<input
 		type="text"

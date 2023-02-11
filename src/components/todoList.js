@@ -1,7 +1,10 @@
-import React, {useState,useEffect} from "react";
+import React, {useContext} from "react";
+import { TodosContext } from "../todoContext";
 
-function TodoList({todos}) {
+function TodoList() {
+	const todos = useContext(TodosContext);
 
+	console.log(todos);
 	return <>
 		{console.log(`TodoList Returned`)}
 		<ul>

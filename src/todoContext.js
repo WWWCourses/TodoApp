@@ -1,13 +1,12 @@
-import {createContext} from "react";
+import {useState,useEffect,createContext} from "react";
 
-const Context = createContext(defaultValue);
+const TodosContext = createContext();
 
 
-function ContextDemo() {
+function TodosContextWrapper(props) {
+	const [todos, setTodos] = useState([]);
 
 	function fetchTodos() {
-		// console.log(`fetchTodos callled`);
-
 		fetch('https://jsonplaceholder.typicode.com/todos')
 		.then(r=>r.json())
 		.then(data=> setTodos( [...data].slice(0,5) ))
@@ -28,10 +27,12 @@ function ContextDemo() {
 	useEffect(fetchTodos,[]) // componentDidMount
 
 
-	return (<div>
-	  <Context.Provider value={}>
-		<Component1/>
-	  </Context.Provider>
+	// return Provider wrapper
+	return (
+		<TodosContext.Provider value={ {todos, addTodo} }>
+			{props.children}
+		</TodosContext.Provider>
+	)
+}
 
-	</div>);
-  }
+export {TodosContextWrapper, TodosContext}
